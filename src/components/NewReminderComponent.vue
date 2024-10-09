@@ -71,5 +71,6 @@ input {
 input:focus {
   color: beige;
   background-color: rgb(49, 55, 74);
+  text-align: center;
 }
 </style>

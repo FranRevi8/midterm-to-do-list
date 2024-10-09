@@ -85,7 +85,7 @@ const cancelNewReminder = () => {
 
 <style scoped>
 .home {
-  height: 100vh;
+  height: 90vh;
   background-color: rgb(49, 55, 74);
   color: beige;
   display: flex;

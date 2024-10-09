@@ -1,4 +1,5 @@
 <script setup>
+
 </script>
 
 <template>
@@ -7,7 +8,7 @@
         <h1>Iron Reminders</h1>
         <nav>
             <ul>
-                <li>Iniciar Sesión</li>
+                <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
             </ul>
         </nav>
     </header>
