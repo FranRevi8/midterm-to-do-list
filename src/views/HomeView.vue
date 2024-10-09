@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import ReminderComponent from '@/components/ReminderComponent.vue'
 import TypesList from '@/components/TypesList.vue'
+import NewReminderComponent from '@/components/NewReminderComponent.vue'
 
 const reminders = ref([
   { name: 'Hacer la compra', time: 'hoy, 15:30', state: true, type: 'personal' },
@@ -10,15 +11,16 @@ const reminders = ref([
   { name: 'Reunión de trabajo', time: 'hoy, 16:00', state: false, type: 'trabajo' }
 ])
 
-const types = [...new Set(reminders.value.map((item) => item.type))]
+const types = ref([...new Set(reminders.value.map((item) => item.type.toLowerCase()))])
 
 const selectedType = ref(null)
 const showCompleted = ref(true)
+const showNewReminderForm = ref(false)
 
 const filteredReminders = computed(() => {
   return reminders.value.filter((reminder) => {
     const matchesType = selectedType.value
-      ? reminder.type === selectedType.value.toLowerCase()
+      ? reminder.type.toLowerCase() === selectedType.value.toLowerCase()
       : true
     const matchesState = showCompleted.value || !reminder.state
     return matchesType && matchesState
@@ -37,7 +39,21 @@ const isCompleted = (state) => {
   state.state = !state.state
 }
 
+const addNewReminder = (newReminder) => {
+  newReminder.type = newReminder.type.toLowerCase()
 
+  reminders.value.push(newReminder)
+
+  if (!types.value.includes(newReminder.type)) {
+    types.value.push(newReminder.type)
+  }
+
+  showNewReminderForm.value = false
+}
+
+const cancelNewReminder = () => {
+  showNewReminderForm.value = false
+}
 </script>
 
 <template>
@@ -56,7 +72,13 @@ const isCompleted = (state) => {
       <button class="show-completed" @click="toggleCompletedReminders">
         {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
       </button>
-      <router-link to="/new-reminder" class="new-r-btn">Nuevo Recordatorio</router-link>
+      <button class="new-r-btn" @click="showNewReminderForm = true">Nuevo Recordatorio</button>
+
+      <NewReminderComponent
+        v-if="showNewReminderForm"
+        @add-reminder="addNewReminder"
+        @cancel-creation="cancelNewReminder"
+      />
     </div>
   </div>
 </template>
@@ -76,13 +98,5 @@ const isCompleted = (state) => {
 
 .show-completed {
   margin: 40px;
-}
-
-.new-r-btn{
-  background-color: white;
-  border: 1px solid grey;
-  color: black;
-  text-decoration: none;
-  border-radius: 4px;
 }
 </style>
