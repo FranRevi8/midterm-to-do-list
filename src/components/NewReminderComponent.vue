@@ -11,13 +11,10 @@ const newReminder = ref({
 const emit = defineEmits(['add-reminder', 'cancel-creation'])
 
 const submitForm = () => {
-  emit('add-reminder', { ...newReminder.value })
-  newReminder.value = {
-    name: '',
-    time: '',
-    state: false,
-    type: ''
+  if (newReminder.value.time) {
+    newReminder.value.time = new Date(newReminder.value.time).toISOString();
   }
+  emit('add-reminder', { ...newReminder.value });
 }
 
 const cancelNew = () => {
@@ -37,7 +34,7 @@ const cancelNew = () => {
     </div>
     <div>
       <label for="time">¿Cuando?:</label>
-      <input v-model="newReminder.time" type="text" id="time" required />
+      <input v-model="newReminder.time" type="datetime-local" id="time" required />
     </div>
     <button type="submit">Añadir Recordatorio</button>
     <button @click="cancelNew">Cancelar</button>

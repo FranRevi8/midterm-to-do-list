@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps({
   name: String,
@@ -14,6 +15,9 @@ const isCompleted = () => {
   emit('completed-toggle')
 }
 
+const formattedTime = computed(() => {
+  return new Date(props.time).toLocaleString()  
+})
 </script>
 
 <template>
@@ -23,14 +27,13 @@ const isCompleted = () => {
       <ul>
         <li><p>Lista:</p>{{ props.type }}</li>
         <li>{{ props.name }}</li>
-        <li>{{ props.time }}</li>
+        <li>{{ formattedTime }}</li>
         <li>
           <button @click="isCompleted">
             <span v-if="props.state">Marcar No Completado</span>
             <span v-else>Marcar completado</span>
           </button>
         </li>
-
         <li>
           Estado:
           <span v-if="props.state">Completado</span>
