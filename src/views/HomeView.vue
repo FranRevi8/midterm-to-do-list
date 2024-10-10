@@ -3,11 +3,15 @@ import { ref, computed } from 'vue'
 import ReminderComponent from '@/components/ReminderComponent.vue'
 import TypesList from '@/components/TypesList.vue'
 import NewReminderComponent from '@/components/NewReminderComponent.vue'
-import { useReminderStore } from '@/stores/reminder';
+import { useReminderStore } from '@/stores/reminder'
+import { watch } from 'vue'
 
 const reminderStore = useReminderStore()
 
-const types = ref([...new Set(reminderStore.reminders.map((item) => item.type.toLowerCase()))])
+const types = ref([])
+watch(() => reminderStore.reminders, (newReminders) => {
+  types.value = [...new Set(newReminders.map(item => item.type.toLowerCase()))]
+})
 
 const selectedType = ref(null)
 const showCompleted = ref(true)
@@ -31,25 +35,35 @@ const toggleCompletedReminders = () => {
   showCompleted.value = !showCompleted.value
 }
 
-const isCompleted = (state) => {
-  state.state = !state.state
-}
-
-const addNewReminder = (newReminder) => {
-  newReminder.type = newReminder.type.toLowerCase()
-
-  reminderStore.reminders.push(newReminder)
-
-  if (!types.value.includes(newReminder.type)) {
-    types.value.push(newReminder.type)
-  }
-
-  showNewReminderForm.value = false
+const isCompleted = (reminder) => {
+  reminder.state = !reminder.state
 }
 
 const cancelNewReminder = () => {
   showNewReminderForm.value = false
 }
+
+const addNewReminder = (newReminder) => {
+  newReminder.type = newReminder.type.toLowerCase()
+  
+  reminderStore.createReminder(newReminder)
+  
+  if (!types.value.includes(newReminder.type)) {
+    types.value.push(newReminder.type)
+  }
+  
+  showNewReminderForm.value = false
+}
+
+const deleteReminder = (reminder) => {
+  reminderStore.deleteReminder(reminder.id)
+}
+// Seguir por aquí!**********************************************************************************
+const updateReminder = (reminder) => {
+  console.log(`Modificarías el remind con id ${reminder.id}`);
+  
+}
+
 </script>
 
 <template>
@@ -64,6 +78,8 @@ const cancelNewReminder = () => {
         :state="reminder.state"
         :type="reminder.type"
         @completed-toggle="isCompleted(reminder)"
+        @delete="deleteReminder(reminder)"
+        @update="updateReminder(reminder)"
       />
       <button class="show-completed" @click="toggleCompletedReminders">
         {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}

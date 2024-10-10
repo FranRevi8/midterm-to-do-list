@@ -9,10 +9,18 @@ const props = defineProps({
   state: Boolean
 })
 
-const emit = defineEmits(['completed-toggle'])
+const emit = defineEmits(['completed-toggle', 'delete', 'update'])
 
 const isCompleted = () => {
   emit('completed-toggle')
+}
+
+const deleteReminder = () => {
+  emit('delete')
+}
+
+const updateReminder = () => {
+  emit('update')
 }
 
 const formattedTime = computed(() => {
@@ -39,6 +47,8 @@ const formattedTime = computed(() => {
           <span v-if="props.state">Completado</span>
           <span v-else>No completado</span>
         </li>
+        <li><button @click="updateReminder">Modificar</button></li>
+        <li><button @click="deleteReminder">Eliminar</button></li>
       </ul>
     </div>
   </div>

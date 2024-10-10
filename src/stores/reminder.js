@@ -1,13 +1,81 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, onMounted } from 'vue';
+import { defineStore } from 'pinia';
 
 export const useReminderStore = defineStore('reminder', () => {
-  const reminders = ref([
-    { name: 'Hacer la compra', time: new Date('2024-10-09T15:30:00').toISOString(), state: true, type: 'personal' },
-    { name: 'Cena de empresa', time: new Date('2024-10-10T10:00:00').toISOString(), state: true, type: 'trabajo' },
-    { name: 'Llamar al dentista', time: new Date('2024-10-10T12:30:00').toISOString(), state: false, type: 'personal' },
-    { name: 'Reunión de trabajo', time: new Date('2024-10-09T16:00:00').toISOString(), state: false, type: 'trabajo' }
-  ])
-  
-    return {reminders}
-  })
+  const reminders = ref([]);
+  const loading = ref(false);
+  const error = ref(null);
+
+  const baseURL = 'http://localhost:8080/reminders'; 
+
+  async function fetchReminders() {
+    loading.value = true;
+    try {
+      const response = await fetch(baseURL);
+      if (!response.ok) {
+        throw new Error('Failed to fetch');
+      }
+      const data = await response.json();
+      reminders.value = data;
+    } catch (err) {
+      error.value = 'Error fetching reminders';
+      console.error(err);
+    } finally {
+      loading.value = false;
+    }
+  }
+
+  async function createReminder(reminder) {
+    try {
+      const response = await fetch(baseURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reminder),
+      });
+      const newReminder = await response.json();
+      reminders.value.push(newReminder);
+    } catch (err) {
+      error.value = 'Error creating reminder';
+      console.error(err);
+    }
+  }
+
+  async function updateReminder(id, reminder) {
+    try {
+      const response = await fetch(`${baseURL}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reminder),
+      });
+      const updatedReminder = await response.json();
+
+      const index = reminders.value.findIndex(r => r.id === id);
+      if (index !== -1) {
+        reminders.value[index] = updatedReminder;
+      }
+    } catch (err) {
+      error.value = 'Error updating reminder';
+      console.error(err);
+    }
+  }
+
+  async function deleteReminder(id) {
+    try {
+      await fetch(`${baseURL}/${id}`, {
+        method: 'DELETE',
+      });
+      reminders.value = reminders.value.filter(reminder => reminder.id !== id);
+    } catch (err) {
+      error.value = 'Error deleting reminder';
+      console.error(err);
+    }
+  }
+
+  onMounted(fetchReminders);
+
+  return { reminders, loading, error, fetchReminders, createReminder, updateReminder, deleteReminder };
+});
