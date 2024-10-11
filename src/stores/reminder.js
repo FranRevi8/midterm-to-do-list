@@ -75,7 +75,38 @@ export const useReminderStore = defineStore('reminder', () => {
     }
   }
 
+  async function toggleReminderState(id) {
+    const reminder = reminders.value.find(r => r.id === id);
+    if (reminder) {
+      reminder.state = !reminder.state;
+
+      try {
+        const response = await fetch(`${baseURL}/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(reminder), 
+        });
+
+        if (!response.ok) {
+          throw new Error('Error updating reminder state');
+        }
+
+        const updatedReminder = await response.json();
+        
+        const index = reminders.value.findIndex(r => r.id === id);
+        if (index !== -1) {
+          reminders.value[index] = updatedReminder;
+        }
+      } catch (err) {
+        error.value = 'Error updating reminder state';
+        console.error(err);
+      }
+    }
+  }
+
   onMounted(fetchReminders);
 
-  return { reminders, loading, error, fetchReminders, createReminder, updateReminder, deleteReminder };
+  return { reminders, loading, error, fetchReminders, createReminder, updateReminder, deleteReminder, toggleReminderState };
 });

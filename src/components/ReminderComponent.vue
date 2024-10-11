@@ -141,7 +141,7 @@ li {
 }
 
 .complete-btn-cont{
-  width: 3.5%;
+  width: 2%;
 }
 
 .modify-btn-cont {

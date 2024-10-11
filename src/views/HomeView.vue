@@ -41,7 +41,8 @@ const toggleCompletedReminders = () => {
 }
 
 const isCompleted = (reminder) => {
-  reminder.state = !reminder.state
+  reminderStore.toggleReminderState(reminder.id);
+  
 }
 
 const cancelNewReminder = () => {
