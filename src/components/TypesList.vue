@@ -12,7 +12,7 @@ const selectType = (type) => {
 
 <template>
   <aside class="menu">
-    <h2>Listas:</h2>
+    <h2>Mis listas:</h2>
     <ul>
       <li v-for="(type, index) in types" :key="index">
         <button @click="selectType(type)" class="type-button">{{ type }}</button>
@@ -35,6 +35,10 @@ const selectType = (type) => {
   top: 135px;
 }
 
+h2{
+  margin-left: 12px;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -54,6 +58,10 @@ li {
   cursor: pointer;
   width: 90%;
   height: 50px;
+}
+
+.type-button::first-letter {
+  text-transform: uppercase;
 }
 
 .view-all-button{

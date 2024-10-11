@@ -90,15 +90,18 @@ updateTypesList()
         @delete="deleteReminder(reminder)"
         @update="(updatedReminder) => updateReminder({ ...reminder, ...updatedReminder })"
       />
-      <button @click="toggleCompletedReminders" class="toggle-completed">
-        {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
-      </button>
-      <button @click="showNewReminderForm = true" class="new-reminder-button">Nuevo Recordatorio</button>
       <NewReminderComponent
         v-if="showNewReminderForm"
         @add-reminder="addNewReminder"
         @cancel-creation="cancelNewReminder"
       />
+      <div class="center">
+
+        <button @click="toggleCompletedReminders" class="toggle-completed">
+          {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
+        </button>
+        <button @click="showNewReminderForm = true" class="new-reminder-button">Nuevo Recordatorio</button>
+      </div>
     </div>
   </div>
 </template>
@@ -127,10 +130,14 @@ updateTypesList()
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  margin: 20px 0;
+  margin: 20px 10px;
 }
 
 .toggle-completed:hover, .new-reminder-button:hover {
   background-color: #2980B9;
+}
+
+.center{
+  text-align: center;
 }
 </style>

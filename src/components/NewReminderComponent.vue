@@ -33,7 +33,7 @@ const cancelNew = () => {
       <input v-model="newReminder.name" type="text" id="name" required />
     </div>
     <div class="input-group">
-      <label for="time">¿Cuándo?:</label>
+      <label for="time">¿Cuándo?</label>
       <input v-model="newReminder.time" type="datetime-local" id="time" required />
     </div>
     <div class="button-group">
@@ -45,13 +45,13 @@ const cancelNew = () => {
 
 <style scoped>
 .new-reminder-form {
-  background-color: #34495E;
+  background-color: #485c70;
   color: #ECF0F1;
   padding: 20px;
   margin: 20px auto;
-  width: 90%;
+  width: 75%;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
 }
@@ -70,23 +70,25 @@ label {
 input {
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ECF0F1;
-  background-color: rgb(49, 55, 74);
+  border: 1px solid #ffffff;
+  background-color: #34495E;
   color: #ECF0F1;
   width: 70%;
+  text-align: center;
 }
 
 input:focus {
   outline: none;
   background-color: #2C3E50;
+  text-align: center;
 }
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.add-button, .cancel-button {
+.add-button {
   background-color: #3498DB;
   color: #ECF0F1;
   border: none;
@@ -95,7 +97,22 @@ input:focus {
   cursor: pointer;
 }
 
-.add-button:hover, .cancel-button:hover {
+.cancel-button{
+  background-color: #d92c2c;
+  color: #ECF0F1;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.add-button:hover {
   background-color: #2980B9;
 }
+
+.cancel-button:hover{
+  background-color: #831212;
+}
+
 </style>

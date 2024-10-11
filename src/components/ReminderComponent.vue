@@ -43,8 +43,8 @@ const saveChanges = () => {
   <div class="reminder-card">
     <ul class="reminder-content">
       <li class="type">
-        <span>Lista:</span>
-        <br />
+        <span v-if="!isEditing" class="list-title">Lista:</span>
+        <br v-if="!isEditing"/>
         <span v-if="isEditing">
           <input v-model="editedType" />
         </span>
@@ -76,7 +76,7 @@ const saveChanges = () => {
         </button>
       </li>
       <li class="modify-btn-cont">
-        <button v-if="isEditing" @click="saveChanges">Guardar</button>
+        <button v-if="isEditing" @click="saveChanges" class="save-changes-btn">Guardar</button>
         <button v-else @click="enableEditing">🔄</button>
       </li>
       <li class="delete-btn-cont">
@@ -112,8 +112,14 @@ li {
 
 .type {
   flex-direction: column;
-  width: 8%;
+  width: 10%;
   text-align: center;
+  text-transform:capitalize;
+  line-height: 28px;
+}
+
+.list-title{
+  color: #a2bed1;
 }
 
 .name {
@@ -165,6 +171,11 @@ button:hover {
   background-color: #2980b9;
 }
 
+.save-changes-btn{
+  font-size: 20px;
+  background-color: #3096da;
+}
+
 input {
   padding: 5px;
   border-radius: 5px;
@@ -199,5 +210,21 @@ input {
 
 .incomplete-btn:hover {
   background-color: rgb(192, 192, 64);
+}
+
+input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #34495E;
+  color: #ECF0F1;
+  height:42px;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+  background-color: #2C3E50;
+  text-align: center;
 }
 </style>
