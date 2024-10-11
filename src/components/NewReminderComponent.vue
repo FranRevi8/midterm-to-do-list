@@ -12,9 +12,9 @@ const emit = defineEmits(['add-reminder', 'cancel-creation'])
 
 const submitForm = () => {
   if (newReminder.value.time) {
-    newReminder.value.time = new Date(newReminder.value.time).toISOString();
+    newReminder.value.time = new Date(newReminder.value.time).toISOString()
   }
-  emit('add-reminder', { ...newReminder.value });
+  emit('add-reminder', { ...newReminder.value })
 }
 
 const cancelNew = () => {
@@ -46,7 +46,7 @@ const cancelNew = () => {
 <style scoped>
 .new-reminder-form {
   background-color: #485c70;
-  color: #ECF0F1;
+  color: #ecf0f1;
   padding: 20px;
   margin: 20px auto;
   width: 75%;
@@ -71,15 +71,15 @@ input {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ffffff;
-  background-color: #34495E;
-  color: #ECF0F1;
+  background-color: #34495e;
+  color: #ecf0f1;
   width: 70%;
   text-align: center;
 }
 
 input:focus {
   outline: none;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   text-align: center;
 }
 
@@ -89,17 +89,17 @@ input:focus {
 }
 
 .add-button {
-  background-color: #3498DB;
-  color: #ECF0F1;
+  background-color: #3498db;
+  color: #ecf0f1;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.cancel-button{
+.cancel-button {
   background-color: #d92c2c;
-  color: #ECF0F1;
+  color: #ecf0f1;
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -108,11 +108,10 @@ input:focus {
 }
 
 .add-button:hover {
-  background-color: #2980B9;
+  background-color: #2980b9;
 }
 
-.cancel-button:hover{
+.cancel-button:hover {
   background-color: #831212;
 }
-
 </style>

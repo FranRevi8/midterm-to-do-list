@@ -8,15 +8,18 @@ import { watch } from 'vue'
 
 const reminderStore = useReminderStore()
 
-const types = ref([]);
+const types = ref([])
 
 const updateTypesList = () => {
-  types.value = [...new Set(reminderStore.reminders.map(item => item.type.toLowerCase()))];
+  types.value = [...new Set(reminderStore.reminders.map((item) => item.type.toLowerCase()))]
 }
 
-watch(() => reminderStore.reminders, () => {
-  updateTypesList();
-});
+watch(
+  () => reminderStore.reminders,
+  () => {
+    updateTypesList()
+  }
+)
 
 const selectedType = ref(null)
 const showCompleted = ref(true)
@@ -41,8 +44,7 @@ const toggleCompletedReminders = () => {
 }
 
 const isCompleted = (reminder) => {
-  reminderStore.toggleReminderState(reminder.id);
-  
+  reminderStore.toggleReminderState(reminder.id)
 }
 
 const cancelNewReminder = () => {
@@ -51,13 +53,13 @@ const cancelNewReminder = () => {
 
 const addNewReminder = (newReminder) => {
   newReminder.type = newReminder.type.toLowerCase()
-  
+
   reminderStore.createReminder(newReminder)
-  
+
   if (!types.value.includes(newReminder.type)) {
     types.value.push(newReminder.type)
   }
-  
+
   showNewReminderForm.value = false
 }
 
@@ -66,12 +68,11 @@ const deleteReminder = (reminder) => {
 }
 
 const updateReminder = async (reminder) => {
-  await reminderStore.updateReminder(reminder.id, reminder);
-  updateTypesList(); 
-};
+  await reminderStore.updateReminder(reminder.id, reminder)
+  updateTypesList()
+}
 
 updateTypesList()
-
 </script>
 
 <template>
@@ -96,11 +97,12 @@ updateTypesList()
         @cancel-creation="cancelNewReminder"
       />
       <div class="center">
-
         <button @click="toggleCompletedReminders" class="toggle-completed">
           {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
         </button>
-        <button @click="showNewReminderForm = true" class="new-reminder-button">Nuevo Recordatorio</button>
+        <button @click="showNewReminderForm = true" class="new-reminder-button">
+          Nuevo Recordatorio
+        </button>
       </div>
     </div>
   </div>
@@ -110,22 +112,23 @@ updateTypesList()
 .home-container {
   display: flex;
   justify-content: space-between;
-  background-color: #34495E;
-  color: #ECF0F1;
+  background-color: #34495e;
+  color: #ecf0f1;
   padding: 20px;
 }
 
 .reminders-container {
   width: 75%;
   margin: 0 auto;
-  position:relative;
-  left: 5vw;
-  top: 120px;
+  position: relative;
+  left: 7vw;
+  top: 70px;
 }
 
-.toggle-completed, .new-reminder-button {
-  background-color: #3498DB;
-  color: #ECF0F1;
+.toggle-completed,
+.new-reminder-button {
+  background-color: #3498db;
+  color: #ecf0f1;
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -133,11 +136,12 @@ updateTypesList()
   margin: 20px 10px;
 }
 
-.toggle-completed:hover, .new-reminder-button:hover {
-  background-color: #2980B9;
+.toggle-completed:hover,
+.new-reminder-button:hover {
+  background-color: #2980b9;
 }
 
-.center{
+.center {
   text-align: center;
 }
 </style>

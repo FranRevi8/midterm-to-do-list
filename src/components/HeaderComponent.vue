@@ -1,58 +1,113 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-    <div class="header-container">
-      <header>
-        <h1>Iron Reminders</h1>
-        <nav>
-          <ul>
-            <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
-          </ul>
-        </nav>
-      </header>
-    </div>
-  </template>
-  
-  <style scoped>
-  .header-container {
-    background-color: #2C3E50;
-    padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-  }
-  
-  header {
-    width: 85%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    color: #ECF0F1;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style-type: none;
-  }
-  
-  nav ul li {
-    margin-left: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #ECF0F1;
-  }
-  
-  nav ul li a:hover {
-    color: #3498DB;
-  }
-  
-  </style>
+  <div class="header-container">
+    <header>
+      <div class="logo1"></div>
+      <div class="logo2"></div>
+      <div class="logo3"></div>
+      <div class="logo4"></div>
+      <h1>Iron Reminders</h1>
+      <div class="logo-finisher"></div>
+      <nav>
+        <ul>
+          <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+</template>
+
+<style scoped>
+.header-container {
+  background: linear-gradient(to bottom, #2c3e50, #1e3042);
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+header {
+  width: 94%;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo1 {
+  position: absolute;
+  left: 12vw;
+  background-color: #ffb3ba;
+  width: 0.8vw;
+  height: 150px;
+  transform: rotate(30deg);
+}
+
+.logo2 {
+  position: absolute;
+  left: 12.8vw;
+  background-color: #ffdfba;
+  width: 0.8vw;
+  height: 150px;
+  transform: rotate(30deg);
+}
+
+.logo3 {
+  position: absolute;
+  left: 13.6vw;
+  background-color: #ffffba;
+  width: 0.8vw;
+  height: 150px;
+  transform: rotate(30deg);
+}
+
+.logo4 {
+  position: absolute;
+  left: 14.4vw;
+  background-color: #baffc9;
+  width: 0.8vw;
+  height: 150px;
+  transform: rotate(30deg);
+}
+
+.logo-finisher {
+  height: 40px;
+  width: 15vw;
+  background-color: #34495e;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 80px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #e7eef0;
+  z-index: 1;
+  text-shadow:
+    -1.5px -1.5px 0 black,
+    1.5px -1.5px 0 black,
+    -1.5px 1.5px 0 black,
+    1.5px 1.5px 0 black;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ecf0f1;
+}
+
+nav ul li a:hover {
+  color: #3498db;
+}
+</style>

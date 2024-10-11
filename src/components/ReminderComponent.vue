@@ -44,7 +44,7 @@ const saveChanges = () => {
     <ul class="reminder-content">
       <li class="type">
         <span v-if="!isEditing" class="list-title">Lista:</span>
-        <br v-if="!isEditing"/>
+        <br v-if="!isEditing" />
         <span v-if="isEditing">
           <input v-model="editedType" />
         </span>
@@ -114,11 +114,11 @@ li {
   flex-direction: column;
   width: 10%;
   text-align: center;
-  text-transform:capitalize;
+  text-transform: capitalize;
   line-height: 28px;
 }
 
-.list-title{
+.list-title {
   color: #a2bed1;
 }
 
@@ -146,7 +146,7 @@ li {
   color: rgb(228, 228, 59);
 }
 
-.complete-btn-cont{
+.complete-btn-cont {
   width: 2%;
 }
 
@@ -171,7 +171,7 @@ button:hover {
   background-color: #2980b9;
 }
 
-.save-changes-btn{
+.save-changes-btn {
   font-size: 20px;
   background-color: #3096da;
 }
@@ -185,7 +185,6 @@ input {
 
 .delete-btn {
   background-color: #485c70;
-
 }
 
 .delete-btn:hover {
@@ -195,7 +194,7 @@ input {
 .complete-btn {
   background-color: #485c70;
   font-size: 30px;
-  color:#4d6c81;
+  color: #4d6c81;
 }
 
 .complete-btn:hover {
@@ -205,7 +204,7 @@ input {
 .incomplete-btn {
   background-color: #485c70;
   font-size: 30px;
-  color:#4d6c81;
+  color: #4d6c81;
 }
 
 .incomplete-btn:hover {
@@ -216,15 +215,15 @@ input {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ffffff;
-  background-color: #34495E;
-  color: #ECF0F1;
-  height:42px;
+  background-color: #34495e;
+  color: #ecf0f1;
+  height: 42px;
   text-align: center;
 }
 
 input:focus {
   outline: none;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   text-align: center;
 }
 </style>
