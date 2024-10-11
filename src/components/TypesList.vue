@@ -12,47 +12,46 @@ const selectType = (type) => {
 
 <template>
   <aside class="menu">
-    <div>
-      <ul>
-        <li v-for="(type, index) in types" :key="index">
-          <button class="type-to-upper" @click="selectType(type)">{{ type }}</button>
-        </li>
-        <li>
-          <button @click="selectType(null)" class="view-all">Ver todos</button>
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li v-for="(type, index) in types" :key="index">
+        <button @click="selectType(type)" class="type-button">{{ type }}</button>
+      </li>
+      <li>
+        <button @click="selectType(null)" class="view-all-button">Ver todos</button>
+      </li>
+    </ul>
   </aside>
 </template>
 
 <style scoped>
 .menu {
-  background-color: rgb(93, 90, 108);
-  width: 15%;
+  background-color: #2C3E50;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
+  margin-bottom: 15px;
   text-align: center;
-  list-style-type: none;
 }
 
-li button {
-  background-color: beige;
-  color: black;
-  width: 75%;
-  border-radius: 14px;
+.type-button, .view-all-button {
+  background-color: #3498DB;
+  color: #ECF0F1;
+  border: none;
   padding: 10px;
-  margin-top: 25px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.view-all{
-  margin-top: 500px;
+.type-button:hover, .view-all-button:hover {
+  background-color: #2980B9;
 }
-
-.type-to-upper:first-letter{
-    text-transform: uppercase;
-}
-
 </style>
 
 

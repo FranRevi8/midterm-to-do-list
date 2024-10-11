@@ -74,9 +74,9 @@ updateTypesList()
 </script>
 
 <template>
-  <div class="home">
+  <div class="home-container">
     <TypesList :types="types" @type-selected="handleTypeSelection" />
-    <div class="reminders">
+    <div class="reminders-container">
       <ReminderComponent
         v-for="reminder in filteredReminders"
         :key="reminder.id"
@@ -89,11 +89,10 @@ updateTypesList()
         @delete="deleteReminder(reminder)"
         @update="(updatedReminder) => updateReminder({ ...reminder, ...updatedReminder })"
       />
-      <button class="show-completed" @click="toggleCompletedReminders">
+      <button @click="toggleCompletedReminders" class="toggle-completed">
         {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
       </button>
-      <button class="new-r-btn" @click="showNewReminderForm = true">Nuevo Recordatorio</button>
-
+      <button @click="showNewReminderForm = true" class="new-reminder-button">Nuevo Recordatorio</button>
       <NewReminderComponent
         v-if="showNewReminderForm"
         @add-reminder="addNewReminder"
@@ -104,19 +103,30 @@ updateTypesList()
 </template>
 
 <style scoped>
-.home {
-  height: 90vh;
-  background-color: rgb(49, 55, 74);
-  color: beige;
+.home-container {
   display: flex;
+  justify-content: space-between;
+  background-color: #34495E;
+  color: #ECF0F1;
+  padding: 20px;
 }
 
-.reminders {
-  width: 100%;
-  text-align: center;
+.reminders-container {
+  width: 75%;
+  margin: 0 auto;
 }
 
-.show-completed {
-  margin: 40px;
+.toggle-completed, .new-reminder-button {
+  background-color: #3498DB;
+  color: #ECF0F1;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.toggle-completed:hover, .new-reminder-button:hover {
+  background-color: #2980B9;
 }
 </style>
