@@ -19,6 +19,8 @@
   .header-container {
     background-color: #2C3E50;
     padding: 15px 0;
+    position: fixed;
+    width: 100%;
   }
   
   header {
@@ -46,7 +48,6 @@
   nav ul li a {
     text-decoration: none;
     color: #ECF0F1;
-    font-weight: 500;
   }
   
   nav ul li a:hover {

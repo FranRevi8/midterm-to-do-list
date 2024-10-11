@@ -114,6 +114,9 @@ updateTypesList()
 .reminders-container {
   width: 75%;
   margin: 0 auto;
+  position:relative;
+  left: 5vw;
+  top: 120px;
 }
 
 .toggle-completed, .new-reminder-button {
