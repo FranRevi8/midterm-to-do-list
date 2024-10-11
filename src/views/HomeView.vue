@@ -8,10 +8,15 @@ import { watch } from 'vue'
 
 const reminderStore = useReminderStore()
 
-const types = ref([])
-watch(() => reminderStore.reminders, (newReminders) => {
-  types.value = [...new Set(newReminders.map(item => item.type.toLowerCase()))]
-})
+const types = ref([]);
+
+const updateTypesList = () => {
+  types.value = [...new Set(reminderStore.reminders.map(item => item.type.toLowerCase()))];
+}
+
+watch(() => reminderStore.reminders, () => {
+  updateTypesList();
+});
 
 const selectedType = ref(null)
 const showCompleted = ref(true)
@@ -58,11 +63,13 @@ const addNewReminder = (newReminder) => {
 const deleteReminder = (reminder) => {
   reminderStore.deleteReminder(reminder.id)
 }
-// Seguir por aquí!**********************************************************************************
-const updateReminder = (reminder) => {
-  console.log(`Modificarías el remind con id ${reminder.id}`);
-  
-}
+
+const updateReminder = async (reminder) => {
+  await reminderStore.updateReminder(reminder.id, reminder);
+  updateTypesList(); 
+};
+
+updateTypesList()
 
 </script>
 
@@ -71,15 +78,16 @@ const updateReminder = (reminder) => {
     <TypesList :types="types" @type-selected="handleTypeSelection" />
     <div class="reminders">
       <ReminderComponent
-        v-for="(reminder, index) in filteredReminders"
-        :key="index"
+        v-for="reminder in filteredReminders"
+        :key="reminder.id"
+        :id="reminder.id"
         :name="reminder.name"
         :time="reminder.time"
         :state="reminder.state"
         :type="reminder.type"
         @completed-toggle="isCompleted(reminder)"
         @delete="deleteReminder(reminder)"
-        @update="updateReminder(reminder)"
+        @update="(updatedReminder) => updateReminder({ ...reminder, ...updatedReminder })"
       />
       <button class="show-completed" @click="toggleCompletedReminders">
         {{ showCompleted ? 'Ocultar completados' : 'Mostrar completados' }}
