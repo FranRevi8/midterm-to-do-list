@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import router from '@/router';
+
+const logout = () => {
+  sessionStorage.removeItem('authToken');
+  router.push('/api/login');
+};
+</script>
 
 <template>
   <div class="header-container">
@@ -11,7 +18,7 @@
       <div class="logo-finisher"></div>
       <nav>
         <ul>
-          <li><RouterLink to="/login">Iniciar Sesión</RouterLink></li>
+          <li><a @click="logout">Cerrar Sesión</a></li>
         </ul>
       </nav>
     </header>
@@ -105,6 +112,7 @@ nav ul li {
 nav ul li a {
   text-decoration: none;
   color: #ecf0f1;
+  cursor: pointer;
 }
 
 nav ul li a:hover {

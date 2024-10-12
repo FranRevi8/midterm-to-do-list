@@ -2,26 +2,35 @@ import { ref, onMounted } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useReminderStore = defineStore('reminder', () => {
-  const reminders = ref([])
-  const loading = ref(false)
-  const error = ref(null)
+  const reminders = ref([]);
+  const loading = ref(false);
+  const error = ref(null);
 
-  const baseURL = 'http://localhost:8080/reminders'
+  const baseURL = 'http://localhost:8080/reminders';
+
+  // Función para obtener el token de sessionStorage
+  function getAuthToken() {
+    return sessionStorage.getItem('authToken'); // Asegúrate de que el token se guarda correctamente en sessionStorage
+  }
 
   async function fetchReminders() {
-    loading.value = true
+    loading.value = true;
     try {
-      const response = await fetch(baseURL)
+      const response = await fetch(baseURL, {
+        headers: {
+          'Authorization': `Bearer ${getAuthToken()}` // Incluir el token en el encabezado
+        }
+      });
       if (!response.ok) {
-        throw new Error('Failed to fetch')
+        throw new Error('Failed to fetch');
       }
-      const data = await response.json()
-      reminders.value = data
+      const data = await response.json();
+      reminders.value = data;
     } catch (err) {
-      error.value = 'Error fetching reminders'
-      console.error(err)
+      error.value = 'Error fetching reminders';
+      console.error(err);
     } finally {
-      loading.value = false
+      loading.value = false;
     }
   }
 
@@ -30,15 +39,16 @@ export const useReminderStore = defineStore('reminder', () => {
       const response = await fetch(baseURL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAuthToken()}` // Incluir el token en el encabezado
         },
         body: JSON.stringify(reminder)
-      })
-      const newReminder = await response.json()
-      reminders.value.push(newReminder)
+      });
+      const newReminder = await response.json();
+      reminders.value.push(newReminder);
     } catch (err) {
-      error.value = 'Error creating reminder'
-      console.error(err)
+      error.value = 'Error creating reminder';
+      console.error(err);
     }
   }
 
@@ -47,66 +57,71 @@ export const useReminderStore = defineStore('reminder', () => {
       const response = await fetch(`${baseURL}/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAuthToken()}` // Incluir el token en el encabezado
         },
         body: JSON.stringify(reminder)
-      })
-      const updatedReminder = await response.json()
+      });
+      const updatedReminder = await response.json();
 
-      const index = reminders.value.findIndex((r) => r.id === id)
+      const index = reminders.value.findIndex((r) => r.id === id);
       if (index !== -1) {
-        reminders.value[index] = updatedReminder
+        reminders.value[index] = updatedReminder;
       }
     } catch (err) {
-      error.value = 'Error updating reminder'
-      console.error(err)
+      error.value = 'Error updating reminder';
+      console.error(err);
     }
   }
 
   async function deleteReminder(id) {
     try {
       await fetch(`${baseURL}/${id}`, {
-        method: 'DELETE'
-      })
-      reminders.value = reminders.value.filter((reminder) => reminder.id !== id)
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${getAuthToken()}` // Incluir el token en el encabezado
+        }
+      });
+      reminders.value = reminders.value.filter((reminder) => reminder.id !== id);
     } catch (err) {
-      error.value = 'Error deleting reminder'
-      console.error(err)
+      error.value = 'Error deleting reminder';
+      console.error(err);
     }
   }
 
   async function toggleReminderState(id) {
-    const reminder = reminders.value.find((r) => r.id === id)
+    const reminder = reminders.value.find((r) => r.id === id);
     if (reminder) {
-      reminder.state = !reminder.state
+      reminder.state = !reminder.state;
 
       try {
         const response = await fetch(`${baseURL}/${id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}` // Incluir el token en el encabezado
           },
           body: JSON.stringify(reminder)
-        })
+        });
 
         if (!response.ok) {
-          throw new Error('Error updating reminder state')
+          throw new Error('Error updating reminder state');
         }
 
-        const updatedReminder = await response.json()
+        const updatedReminder = await response.json();
 
-        const index = reminders.value.findIndex((r) => r.id === id)
+        const index = reminders.value.findIndex((r) => r.id === id);
         if (index !== -1) {
-          reminders.value[index] = updatedReminder
+          reminders.value[index] = updatedReminder;
         }
       } catch (err) {
-        error.value = 'Error updating reminder state'
-        console.error(err)
+        error.value = 'Error updating reminder state';
+        console.error(err);
       }
     }
   }
 
-  onMounted(fetchReminders)
+  onMounted(fetchReminders);
 
   return {
     reminders,
@@ -117,5 +132,5 @@ export const useReminderStore = defineStore('reminder', () => {
     updateReminder,
     deleteReminder,
     toggleReminderState
-  }
-})
+  };
+});

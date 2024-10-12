@@ -1,17 +1,43 @@
 <script setup>
 import { ref } from 'vue'
+import router from '@/router';
 
 const username = ref('')
 const password = ref('')
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (username.value && password.value) {
-    console.log('Usuario:', username.value)
-    console.log('Contraseña:', password.value)
+    try {
+
+      const url = `http://localhost:8080/api/login?username=${username.value}&password=${password.value}`;
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.access_token;
+        console.log('Token recibido:', token);
+        
+        sessionStorage.setItem('authToken', token);
+
+        router.push('/');
+
+      } else {
+        alert('Credenciales incorrectas. Prueba de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error en la autenticación:', error);
+      alert('Error en la autenticación.');
+    }
   } else {
-    alert('Por favor, rellena ambos campos')
+    alert('Por favor, rellena ambos campos');
   }
-}
+};
 </script>
 
 <template>
