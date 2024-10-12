@@ -51,7 +51,6 @@ const colorsArr = [
   padding: 20px;
   border-radius: 10px;
   width: 12vw;
-  height: 79vh;
   position: fixed;
   top: 115px;
   left: 55px;

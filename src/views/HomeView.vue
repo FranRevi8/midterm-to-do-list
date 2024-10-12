@@ -22,7 +22,7 @@ watch(
 )
 
 const selectedType = ref(null)
-const showCompleted = ref(true)
+const showCompleted = ref(false)
 const showNewReminderForm = ref(false)
 
 const filteredReminders = computed(() => {
