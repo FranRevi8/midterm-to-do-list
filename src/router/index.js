@@ -1,13 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import LoginView from '@/views/LoginView.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
 
-// Función para comprobar si el token es válido
 function isAuthenticated() {
-  const token = sessionStorage.getItem('authToken');
-  
-  // Aquí podrías incluir más lógica para verificar si el token ha caducado
-  return !!token; // Devuelve true si el token existe
+  const token = sessionStorage.getItem('authToken')
+
+  // Aquí debería ir la lógica para gestionar tokens caducados. (casi prefiero que la duración sea infinita)
+  return !!token
 }
 
 const router = createRouter({
@@ -17,7 +16,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { requiresAuth: true } // Añade meta para rutas que necesitan autenticación
+      meta: { requiresAuth: true }
     },
     {
       path: '/api/login',
@@ -25,17 +24,14 @@ const router = createRouter({
       component: LoginView
     }
   ]
-});
+})
 
-// Añade un guardia global antes de cada navegación
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isAuthenticated()) {
-    // Si la ruta requiere autenticación y no hay token, redirige al login
-    next({ name: 'login' });
+    next({ name: 'login' })
   } else {
-    // Si no requiere autenticación o hay token, permite la navegación
-    next();
+    next()
   }
-});
+})
 
-export default router;
+export default router

@@ -1,10 +1,10 @@
 <script setup>
-import router from '@/router';
+import router from '@/router'
 
 const logout = () => {
-  sessionStorage.removeItem('authToken');
-  router.push('/api/login');
-};
+  sessionStorage.removeItem('authToken')
+  router.push('/api/login')
+}
 </script>
 
 <template>
