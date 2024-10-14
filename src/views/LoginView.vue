@@ -47,7 +47,7 @@ const goToCreateAccount = () => {
 <template>
   <div class="bg">
     <div class="login-container">
-      <h2>Iniciar Sesión</h2>
+      <h2>¡Bienvenido a IronReminders!</h2>
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
           <label for="username">Usuario</label>
@@ -91,7 +91,7 @@ const goToCreateAccount = () => {
   padding: 20px;
   background-color: #d8e2e5;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
   position: relative;
   top: 200px;
   color: #34495e;
@@ -100,6 +100,12 @@ const goToCreateAccount = () => {
 h2 {
   text-align: center;
   margin-bottom: 20px;
+  padding: 15px;
+  text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
 }
 
 .form-group {

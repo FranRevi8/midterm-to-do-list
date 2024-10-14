@@ -85,8 +85,11 @@ reminderStore.fetchReminders()
 
 <template>
   <div class="home-container">
-    <TypesList :types="types" @type-selected="handleTypeSelection" @urgent="handleUrgentFilter" />
+    <TypesList :types="types" :selected-type="selectedType" @type-selected="handleTypeSelection" @urgent="handleUrgentFilter" />
     <div class="reminders-container">
+      <p v-if="filteredReminders.length === 0" class="no-reminders-message">
+        Aquí no hay nada! Pulsa en "<u>Nuevo Recordatorio</u>" para crear un recordatorio o cambia los filtros aplicados
+      </p>
       <ReminderComponent
         v-for="reminder in filteredReminders"
         :key="reminder.id"
@@ -151,5 +154,15 @@ reminderStore.fetchReminders()
 
 .center {
   text-align: center;
+}
+
+.no-reminders-message{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 75px;
+  margin-bottom: 75px;
+  padding: 40px;
+  border: 2px solid white;
+  border-radius: 12px;
 }
 </style>

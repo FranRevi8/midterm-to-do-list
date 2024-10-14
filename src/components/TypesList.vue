@@ -1,6 +1,7 @@
 <script setup>
 defineProps({
-  types: Array
+  types: Array,
+  selectedType: String
 })
 
 const emit = defineEmits(['type-selected', 'urgent'])
@@ -14,11 +15,11 @@ const filterUrgent = () => {
 }
 
 const colorsArr = [
+  '#BAE1FF', // Azul claro
   '#FFB3BA', // Rosa suave
   '#FFDFBA', // Melocotón
   '#FFFFBA', // Amarillo pálido
   '#BAFFC9', // Verde menta suave
-  '#BAE1FF', // Azul claro
   '#D2B4DE', // Lavanda
   '#FFC3A0', // Coral suave
   '#FF677D', // Rosa pálido
@@ -38,6 +39,7 @@ const colorsArr = [
           @click="selectType(type)"
           class="type-button"
           :style="'background-color: ' + colorsArr[index]"
+          :class="{ 'selected-type': selectedType === type }"
         >
           {{ type }}
         </button>
@@ -131,5 +133,10 @@ li {
 
 .urgent-button:hover{
   background-color: #a33a3a;
+}
+
+.selected-type {
+  outline: 2px solid white;
+  outline-offset: 5px;
 }
 </style>

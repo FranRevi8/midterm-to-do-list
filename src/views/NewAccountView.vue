@@ -38,7 +38,7 @@ const createUser = async () => {
 
 <template>
   <div class="register-form">
-    <h2>Crear Cuenta</h2>
+    <h2>Crea tu Cuenta:</h2>
     <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     <form @submit.prevent="createUser">
       <div>
@@ -65,7 +65,7 @@ const createUser = async () => {
   padding: 20px;
   background-color: #d8e2e5;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
   position: relative;
   top: 200px;
   color: #34495e;
@@ -74,6 +74,11 @@ const createUser = async () => {
 h2 {
   text-align: center;
   margin-bottom: 20px;
+  text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
 }
 
 form div {
