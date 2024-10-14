@@ -19,11 +19,11 @@ const colorsArr = [
   '#FFFFBA', // Amarillo pálido
   '#BAFFC9', // Verde menta suave
   '#BAE1FF', // Azul claro
+  '#D2B4DE', // Lavanda
   '#FFC3A0', // Coral suave
   '#FF677D', // Rosa pálido
   '#D6EAF8', // Azul celeste
   '#FFE5B4', // Amarillo pastel
-  '#D2B4DE', // Lavanda
   '#A2DFF7', // Aqua suave
   '#B9FBC0' // Verde claro
 ]
@@ -110,7 +110,7 @@ li {
 }
 
 .urgent-button {
-  background-color: #ba1111;
+  background-color: #c03e3e;
   color: #ffffff;
   border: none;
   margin: 5px;
@@ -130,6 +130,6 @@ li {
 }
 
 .urgent-button:hover{
-  background-color: #9c1010;
+  background-color: #a33a3a;
 }
 </style>
