@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
+import NewAccountView from '@/views/NewAccountView.vue'
 
 function isAuthenticated() {
   const token = sessionStorage.getItem('authToken')
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/api/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/new-account',
+      name: 'new-account',
+      component: NewAccountView
     }
   ]
 })

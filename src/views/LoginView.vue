@@ -38,6 +38,10 @@ const handleSubmit = async () => {
     alert('Por favor, rellena ambos campos');
   }
 };
+
+const goToCreateAccount = () => {
+  router.push('/new-account')
+}
 </script>
 
 <template>
@@ -68,6 +72,7 @@ const handleSubmit = async () => {
         </div>
 
         <button type="submit">Iniciar Sesión</button>
+        <button @click="goToCreateAccount" class="new-acc-btn">Crear cuenta</button>
       </form>
     </div>
   </div>
@@ -133,8 +138,17 @@ button {
   margin-top: 20px;
 }
 
+.new-acc-btn{
+  background-color: #ac5c0c;
+  margin-top: 10px;
+}
+
 button:hover {
   background-color: #2980b9;
+}
+
+.new-acc-btn:hover {
+  background-color: #8f3b0a;
 }
 
 input:focus {
