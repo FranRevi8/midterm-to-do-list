@@ -24,6 +24,7 @@ watch(
 const selectedType = ref(null)
 const showCompleted = ref(false)
 const showNewReminderForm = ref(false)
+const showUrgentReminders = ref(false)
 
 const filteredReminders = computed(() => {
   return reminderStore.reminders.filter((reminder) => {
@@ -31,7 +32,11 @@ const filteredReminders = computed(() => {
       ? reminder.type.toLowerCase() === selectedType.value.toLowerCase()
       : true
     const matchesState = showCompleted.value || !reminder.state
-    return matchesType && matchesState
+    const reminderTime = new Date(reminder.time)
+    const matchesUrgent = showUrgentReminders.value 
+      ? reminderTime < new Date()
+      : true
+    return matchesType && matchesState && matchesUrgent
   })
 })
 
@@ -72,12 +77,16 @@ const updateReminder = async (reminder) => {
   updateTypesList()
 }
 
+const handleUrgentFilter = () => {
+  showUrgentReminders.value = !showUrgentReminders.value 
+}
+
 updateTypesList()
 </script>
 
 <template>
   <div class="home-container">
-    <TypesList :types="types" @type-selected="handleTypeSelection" />
+    <TypesList :types="types" @type-selected="handleTypeSelection" @urgent="handleUrgentFilter"/>
     <div class="reminders-container">
       <ReminderComponent
         v-for="reminder in filteredReminders"

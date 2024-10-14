@@ -3,10 +3,14 @@ defineProps({
   types: Array
 })
 
-const emit = defineEmits(['type-selected'])
+const emit = defineEmits(['type-selected', 'urgent'])
 
 const selectType = (type) => {
   emit('type-selected', type)
+}
+
+const filterUrgent = () => {
+  emit('urgent')
 }
 
 const colorsArr = [
@@ -39,6 +43,7 @@ const colorsArr = [
         </button>
       </li>
       <li>
+        <button @click="filterUrgent" class="urgent-button">Urgentes</button>
         <button @click="selectType(null)" class="view-all-button">Ver todos</button>
       </li>
     </ul>
@@ -97,10 +102,23 @@ li {
   background-color: #ffffff;
   color: #0f4856;
   border: none;
+  margin: 5px;
   margin-top: 25px;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.urgent-button {
+  background-color: #ba1111;
+  color: #ffffff;
+  border: none;
+  margin: 5px;
+  margin-top: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid white;
 }
 
 .type-button:hover {
@@ -109,5 +127,9 @@ li {
 
 .view-all-button:hover {
   background-color: #bed3e1;
+}
+
+.urgent-button:hover{
+  background-color: #9c1010;
 }
 </style>
