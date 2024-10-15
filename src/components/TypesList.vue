@@ -64,6 +64,21 @@ const colorsArr = [
   border: solid 2px rgb(173, 202, 201);
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
   z-index: 3;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background-color: #34495e;
+  border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background-color: #2c3e50;
 }
 
 h2 {
