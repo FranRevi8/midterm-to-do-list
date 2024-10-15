@@ -19,8 +19,8 @@ const colorsArr = [
   '#FFB3BA', // Rosa suave
   '#BAFFC9', // Verde menta suave
   '#FFDFBA', // Melocotón
-  '#FFFFBA', // Amarillo pálido
   '#D2B4DE', // Lavanda
+  '#FFFFBA', // Amarillo pálido
   '#FFC3A0', // Coral suave
   '#FF677D', // Rosa pálido
   '#D6EAF8', // Azul celeste
@@ -131,12 +131,111 @@ li {
   background-color: #bed3e1;
 }
 
-.urgent-button:hover{
+.urgent-button:hover {
   background-color: #a33a3a;
 }
 
 .selected-type {
   outline: 2px solid white;
   outline-offset: 5px;
+}
+
+@media (max-width: 1036px) {
+  .menu {
+    left: 40px;
+    padding: 10px;
+  }
+
+  h2 {
+    margin-left: 3px;
+    font-size: 18px;
+  }
+}
+@media (max-width: 810px) {
+  .menu {
+    left: 25px;
+    padding: 6px;
+  }
+
+  h2 {
+    margin-left: 3px;
+    font-size: 14px;
+  }
+
+  .type-button {
+    font-size: 12px;
+    height: auto;
+  }
+
+  .urgent-button {
+    font-size: 12px;
+    height: auto;
+    width: 90%;
+  }
+
+  .view-all-button {
+    font-size: 12px;
+    height: auto;
+  }
+}
+
+@media (max-width: 630px) {
+  .menu {
+    left: 15px;
+    padding: 6px;
+  }
+
+  h2 {
+    margin-left: 3px;
+    font-size: 12px;
+  }
+
+  .type-button {
+    font-size: 8px;
+    height: auto;
+  }
+
+  .urgent-button {
+    font-size: 7px;
+    height: auto;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 80%;
+  }
+
+  .view-all-button {
+    font-size: 8px;
+    height: auto;
+  }
+}
+
+@media (max-width: 470px) {
+  .menu {
+    left: 15px;
+    padding: 6px;
+  }
+
+  h2 {
+    margin-left: 3px;
+    font-size: 12px;
+  }
+
+  .type-button {
+    font-size: 6px;
+    height: auto;
+  }
+
+  .urgent-button {
+    font-size: 6px;
+    height: auto;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 80%;
+  }
+
+  .view-all-button {
+    font-size: 6px;
+    height: auto;
+  }
 }
 </style>

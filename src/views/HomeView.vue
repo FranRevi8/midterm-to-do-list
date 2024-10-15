@@ -85,10 +85,16 @@ reminderStore.fetchReminders()
 
 <template>
   <div class="home-container">
-    <TypesList :types="types" :selected-type="selectedType" @type-selected="handleTypeSelection" @urgent="handleUrgentFilter" />
+    <TypesList
+      :types="types"
+      :selected-type="selectedType"
+      @type-selected="handleTypeSelection"
+      @urgent="handleUrgentFilter"
+    />
     <div class="reminders-container">
       <p v-if="filteredReminders.length === 0" class="no-reminders-message">
-        Aquí no hay nada! Pulsa en "<u>Nuevo Recordatorio</u>" para crear un recordatorio o cambia los filtros aplicados
+        Aquí no hay nada! Pulsa en "<u>Nuevo Recordatorio</u>" para crear un recordatorio o cambia
+        los filtros aplicados
       </p>
       <ReminderComponent
         v-for="reminder in filteredReminders"
@@ -156,7 +162,7 @@ reminderStore.fetchReminders()
   text-align: center;
 }
 
-.no-reminders-message{
+.no-reminders-message {
   text-align: center;
   font-size: 20px;
   margin-top: 75px;
@@ -164,5 +170,47 @@ reminderStore.fetchReminders()
   padding: 40px;
   border: 2px solid white;
   border-radius: 12px;
+}
+
+@media (max-width: 1036px) {
+  .reminders-container {
+    font-size: 14px;
+    left: 8vw;
+  }
+}
+@media (max-width: 810px) {
+  .reminders-container {
+    font-size: 12px;
+    left: 9vw;
+  }
+
+  .toggle-completed,
+  .new-reminder-button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 630px) {
+  .reminders-container {
+    font-size: 8px;
+    left: 10vw;
+  }
+
+  .toggle-completed,
+  .new-reminder-button {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 470px) {
+  .reminders-container {
+    font-size: 6px;
+    left: 11vw;
+  }
+
+  .toggle-completed,
+  .new-reminder-button {
+    font-size: 6px;
+  }
 }
 </style>

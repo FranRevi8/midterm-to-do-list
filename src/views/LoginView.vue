@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import router from '@/router';
+import router from '@/router'
 
 const username = ref('')
 const password = ref('')
@@ -8,36 +8,34 @@ const password = ref('')
 const handleSubmit = async () => {
   if (username.value && password.value) {
     try {
-
-      const url = `http://localhost:8080/api/login?username=${username.value}&password=${password.value}`;
+      const url = `http://localhost:8080/api/login?username=${username.value}&password=${password.value}`
 
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+          'Content-Type': 'application/json'
+        }
+      })
 
       if (response.ok) {
-        const data = await response.json();
-        const token = data.access_token;
-        console.log('Token recibido:', token);
-        
-        sessionStorage.setItem('authToken', token);
+        const data = await response.json()
+        const token = data.access_token
+        console.log('Token recibido:', token)
 
-        router.push('/');
+        sessionStorage.setItem('authToken', token)
 
+        router.push('/')
       } else {
-        alert('Credenciales incorrectas. Prueba de nuevo.');
+        alert('Credenciales incorrectas. Prueba de nuevo.')
       }
     } catch (error) {
-      console.error('Error en la autenticación:', error);
-      alert('Error en la autenticación.');
+      console.error('Error en la autenticación:', error)
+      alert('Error en la autenticación.')
     }
   } else {
-    alert('Por favor, rellena ambos campos');
+    alert('Por favor, rellena ambos campos')
   }
-};
+}
 
 const goToCreateAccount = () => {
   router.push('/new-account')
@@ -144,7 +142,7 @@ button {
   margin-top: 20px;
 }
 
-.new-acc-btn{
+.new-acc-btn {
   background-color: #ac5c0c;
   margin-top: 10px;
 }
@@ -161,5 +159,15 @@ input:focus {
   color: #ecf0f1;
   background-color: #34495e;
   outline: none;
+}
+
+@media (max-width: 630px) {
+  .login-container {
+    width: 50%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
 </style>

@@ -172,7 +172,7 @@ button:hover {
 }
 
 .save-changes-btn {
-  font-size: 20px;
+  font-size: 12px;
   background-color: #3096da;
 }
 
@@ -180,7 +180,12 @@ input {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ecf0f1;
-  color: #34495e;
+  background-color: #34495e;
+  color: #ecf0f1;
+  height: 42px;
+  width: 7vw;
+  text-align: center;
+  font-size: 12px;
 }
 
 .delete-btn {
@@ -211,19 +216,147 @@ input {
   background-color: rgb(192, 192, 64);
 }
 
-input {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ffffff;
-  background-color: #34495e;
-  color: #ecf0f1;
-  height: 42px;
-  text-align: center;
-}
-
 input:focus {
   outline: none;
   background-color: #2c3e50;
   text-align: center;
+}
+
+@media (max-width: 1036px) {
+  button {
+    font-size: 20px;
+  }
+
+  .complete-btn {
+    font-size: 20px;
+  }
+  .incomplete-btn {
+    font-size: 20px;
+  }
+
+  .save-changes-btn {
+    font-size: 10px;
+  }
+
+  input {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 810px) {
+  button {
+    font-size: 16px;
+  }
+
+  .complete-btn {
+    font-size: 16px;
+  }
+  .incomplete-btn {
+    font-size: 16px;
+  }
+
+  ul {
+    justify-content: space-between;
+    width: 95%;
+  }
+
+  .reminder-card {
+    height: 50px;
+  }
+
+  .type {
+    line-height: normal;
+  }
+
+  .time {
+    line-height: normal;
+  }
+
+  .save-changes-btn {
+    font-size: 8px;
+  }
+
+  input {
+    font-size: 8px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 630px) {
+  button {
+    font-size: 12px;
+  }
+
+  .complete-btn {
+    font-size: 12px;
+  }
+  .incomplete-btn {
+    font-size: 12px;
+  }
+
+  ul {
+    justify-content: space-between;
+    width: 95%;
+  }
+
+  .reminder-card {
+    height: 40px;
+  }
+
+  .type {
+    line-height: normal;
+  }
+
+  .time {
+    line-height: normal;
+  }
+
+  .save-changes-btn {
+    font-size: 4px;
+  }
+
+  input {
+    font-size: 6px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 470px) {
+  button {
+    font-size: 10px;
+  }
+
+  .complete-btn {
+    font-size: 10px;
+  }
+  .incomplete-btn {
+    font-size: 10px;
+  }
+
+  ul {
+    justify-content: space-between;
+    width: 95%;
+  }
+
+  .reminder-card {
+    height: 35px;
+  }
+
+  .type {
+    line-height: normal;
+  }
+
+  .time {
+    line-height: normal;
+  }
+
+  .save-changes-btn {
+    font-size: 3px;
+  }
+
+  input {
+    font-size: 6px;
+    height: 24px;
+  }
 }
 </style>

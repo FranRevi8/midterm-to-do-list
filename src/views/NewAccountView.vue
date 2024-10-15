@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import router from '@/router';
+import router from '@/router'
 
 const name = ref('')
 const username = ref('')
@@ -12,28 +12,27 @@ const createUser = async () => {
     const response = await fetch('http://localhost:8080/api/users', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: name.value,
         username: username.value,
-        password: password.value,
-      }),
-    });
+        password: password.value
+      })
+    })
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Error creating account');
+      const errorData = await response.json()
+      throw new Error(errorData.message || 'Error creating account')
     }
 
-    alert('Cuenta creada exitosamente');
-    
-    router.push('api/login')
+    alert('Cuenta creada exitosamente')
 
+    router.push('api/login')
   } catch (error) {
-    errorMessage.value = error.message;
+    errorMessage.value = error.message
   }
-};
+}
 </script>
 
 <template>
@@ -131,5 +130,15 @@ input:focus {
   color: #e74c3c;
   margin-bottom: 10px;
   text-align: center;
+}
+
+@media (max-width: 630px) {
+  .register-form {
+    width: 50%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
 </style>

@@ -114,4 +114,41 @@ input:focus {
 .cancel-button:hover {
   background-color: #831212;
 }
+
+@media (max-width: 810px) {
+  label {
+    font-size: 12px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  .add-button {
+    font-size: 12px;
+  }
+
+  .cancel-button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 630px) {
+  label {
+    font-size: 8px;
+  }
+
+  input {
+    font-size: 8px;
+    width: 60%;
+  }
+
+  .add-button {
+    font-size: 8px;
+  }
+
+  .cancel-button {
+    font-size: 8px;
+  }
+}
 </style>

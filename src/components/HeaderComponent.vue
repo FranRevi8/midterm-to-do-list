@@ -118,4 +118,42 @@ nav ul li a {
 nav ul li a:hover {
   color: #3498db;
 }
+
+@media (max-width: 810px) {
+  header {
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .logo-finisher {
+    height: 50px;
+    top: 70px;
+  }
+
+  nav ul li a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 630px) {
+  header {
+    height: 30px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .logo-finisher {
+    height: 60px;
+    top: 60px;
+  }
+
+  nav ul li a {
+    font-size: 12px;
+  }
+}
 </style>
