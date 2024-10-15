@@ -17,9 +17,9 @@ const filterUrgent = () => {
 const colorsArr = [
   '#BAE1FF', // Azul claro
   '#FFB3BA', // Rosa suave
+  '#BAFFC9', // Verde menta suave
   '#FFDFBA', // Melocotón
   '#FFFFBA', // Amarillo pálido
-  '#BAFFC9', // Verde menta suave
   '#D2B4DE', // Lavanda
   '#FFC3A0', // Coral suave
   '#FF677D', // Rosa pálido
